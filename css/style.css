@@ -21,7 +21,34 @@ body {
   }
   
   .primary-color {
+    color:teal;   
+  }
+
+  .contact {
     color:teal;
+    position: relative;
+    -webkit-animation: first 5s 1; 
+    animation: first 5s 1;
+  }
+
+  .contact:hover {
+    color: turquoise;
+  }
+
+  @-webkit-keyframes first {
+    0%   { left: 0px; top: 0px;}
+    /* 25%  { color: turquoise; left: 700px; top: 0px;} */
+    50%  { color: turquoise; left: 700x; top: 0px;}
+    /* 75%  { color: turquoise; left: 0px; top: 35px;} */
+    100% { left: 0px; top: 0px;}
+  }
+  
+  @keyframes first {
+    0%   { left: 0px; top: 0px;}
+    /* 25%  { color: turquoise; left: 700px; top: 0px;} */
+    50%  { color: turquoise; left: 700px; top: 0px;}
+    /* 75%  { color: turquoise; left: 0px; top: 35px;} */
+    100% { left: 0px; top: 0px;}
   }
 
   .primary-color:hover{
@@ -46,11 +73,14 @@ body {
   .content-container {      
     border-radius: 20px;
     background-color: white;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
   }
   
   .nav {
     position: absolute;
-    right: -150px;
+    right: -175px;
     top: 45px;
   }
   
@@ -94,22 +124,99 @@ body {
   }
   
   .title {
-    font-size: 2rem;
-    color: #626364;
+    font-size: 100;
+    font-weight: 800;
+    /* color: #626364;     */
+    background: -webkit-linear-gradient(#fff, #333);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;   
   }
   
   .page-title {
     font-size: 1.5rem;
     margin-bottom: 40px;
     color: #656667;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: turquoise; }
+  }
+
+  .mb-0 {
+    padding: 10% 12% 2% 12%;
+    border-radius: 20px;
+        
   }
   
   .img {
-    padding: 10% 12% 0% 12%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;  
-  }
-  
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;  
+    filter: grayscale(100%) contrast(120%);
+    box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
+    display: block;
+    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+   margin-top: -10px;
+   filter: grayscale(100%) contrast(120%);
+   box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
+   display: block;
+   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+   margin-top: -10px;
+}
+
+.photo:hover img{
+  box-shadow: 2px 2px 10px 0 rgba(0,0,0,.1);
+}
+
+.photo .glow-wrap{
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  margin-top: -10px;
+}
+
+.photo .glow{
+  display: block;
+  position:absolute;
+  width: 40%;
+  height: 200%;
+  background: rgba(255,255,255,.2);
+  top: 0;
+  filter: blur(5px);
+  transform: rotate(45deg) translate(-450%, 0);
+  transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.photo:hover .glow{
+  transform: rotate(45deg) translate(450%, 0);
+  transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.photo:hover img,
+.photo:hover .glow-wrap{
+  margin-top: 0;
+}
+
+
   footer {
     font-size: 1rem;
     display: flex;
@@ -145,13 +252,16 @@ body {
   
   .portfolio-item figure figcaption {
       color: white;
-      font-size: 1.5em;
-      font-weight: bolder;
+      font-size: 2em;
       text-shadow: 2px 2px teal;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
   }
-  
+
+  .portfolio-item figure figcaption h2 {
+    font-size: 2em;
+    font-weight: 1000;
+  }
   .portfolio-item figure figcaption::before,
   .portfolio-item figure figcaption::after {
       pointer-events: none;
@@ -176,10 +286,7 @@ body {
   
   .portfolio-item figure h2 {
       word-spacing: -0.15em;
-      font-weight: 300;
   }
-  
-  .portfolio-item figure h2 span {	font-weight: 1000; }
   
   .portfolio-item figure h2,
   .portfolio-item figure p {
@@ -219,15 +326,15 @@ body {
   }
   
   figure.effect-bubba figcaption::before {
-      border-top: 3px solid teal;
-      border-bottom: 3px solid teal;
+      border-top: 5px solid teal;
+      border-bottom: 5px solid teal;
       -webkit-transform: scale(0,1);
       transform: scale(0,1);
   }
   
   figure.effect-bubba figcaption::after {
-      border-right: 3px solid teal;
-      border-left: 3px solid teal;
+      border-right: 5px solid teal;
+      border-left: 5px solid teal;
       -webkit-transform: scale(1,0);
       transform: scale(1,0);
   }
@@ -273,9 +380,32 @@ body {
   }
   
   .portfolio-item {
-      margin-top: 15px;
-      margin-bottom: 15px;
-      max-width: 280px;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      max-width: 900px;
+      position: relative;
+      -webkit-animation: myfirst 3s 1; 
+      animation: myfirst 3s 1;
+      border:10px outset #ccc;
+      -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+      -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+      box-shadow: 3px 3px 5px 6px #ccc;
+    }
+     
+  @-webkit-keyframes myfirst {
+    0%   {right: 0px; top: 0px; opacity: 0; transform: scale(0.5);}
+    25%  {right: 50px; top: 0px; transform: scale(0.5);}
+    50%  {right: 50px; top: 50px; transform: scale(0.5);}
+    75%  {right: 0px; top: 50px; transform: scale(0.5);}
+    100% {right: 0px; top: 0px;}
+  }
+  
+  @keyframes myfirst {
+    0%   {right: 0px; top: 0px; opacity: 0; transform: scale(0.5);}
+    25%  {right: 50px; top: 0px; transform: scale(0.5);}
+    50%  {right: 50px; top: 50px; transform: scale(0.5);}
+    75%  {right: 0px; top: 50px; transform: scale(0.5);}
+    100% {right: 0px; top: 0px;}
   }
   
   .content-2 {
